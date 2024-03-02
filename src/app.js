@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
 
+
 const app = express()
 
 app.use(cors({
@@ -14,4 +15,17 @@ app.use(express.urlencoded({extended: true, limit:
 app.use(express.static("public"))
 app.use(cookieParser())
 
-export {app}
+
+//routes import
+import userRouter from './routes/user.routes.js'
+
+//routes declaration 
+app.use("/api/v1/users", userRouter)
+
+app.get( "/", (req, res)=>{
+    console.log("hello");
+    res.send("aagya re bandya");
+}
+)
+ //http://localhost:3000/api/v1/users/register
+export { app }
